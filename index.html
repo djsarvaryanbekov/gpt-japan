@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Японский Учитель</title>
+  <!-- Подключение внешнего CSS -->
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+  <div class="top-bar">
+    <div class="menu">☰ Меню
+      <div class="menu-content">
+        <div>📚 Домашние задания</div>
+        <div>📖 Словарь</div>
+        <div>🈷️ Канзи-словарь</div>
+      </div>
+    </div>
+    <div class="progress-bar">
+      <div class="progress" id="progress"></div>
+    </div>
+    <div class="profile">👤 Профиль</div>
+  </div>
+  
+  <div class="container">
+    <div class="sidebar">💬 Чат с учителем</div>
+    <div class="content">
+      <h1>Урок 1: Основы</h1>
+      <p>Тестовое задание появится здесь</p>
+      <div class="button-group">
+        <button class="btn" onclick="changeProgress(-10)">⬅ Назад</button>
+        <button class="btn" onclick="changeProgress(10)">Далее ➡</button>
+      </div>
+    </div>
+    <div class="right-panel">✅ Проверка и объяснения</div>
+  </div>
+
+  <!-- Подключение внешнего JS -->
+  <script src="scripts/app.js"></script>
+</body>
+</html>
