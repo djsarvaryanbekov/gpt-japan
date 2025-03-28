@@ -1,0 +1,147 @@
+/* Базовые стили и тёмная тема */
+body {
+    margin: 0;
+    padding-top: 60px; /* Добавил отступ сверху из-за фиксированной top-bar */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Более современный шрифт */
+    background-color: #121212;
+    color: #e0e0e0; /* Слегка серый текст для лучшей читаемости */
+    display: flex; /* Используем flex для основного контейнера */
+    height: calc(100vh - 60px); /* Высота за вычетом top-bar */
+}
+
+/* Верхняя панель */
+.top-bar {
+    box-sizing: border-box; /* Учитывать padding в ширине/высоте */
+    width: 100%;
+    height: 60px; /* Сделал чуть выше */
+    background: #1f1f1f;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px; /* Убрал вертикальный padding */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Чтобы был поверх всего */
+    border-bottom: 1px solid #333; /* Небольшая граница */
+}
+
+.progress-info {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Расстояние между элементами */
+    font-size: 0.9em;
+}
+
+/* --- Стили меню (остаются как были) --- */
+.menu {
+    cursor: pointer;
+    position: relative;
+    padding: 10px; /* Добавил немного отступа для удобства нажатия */
+}
+.menu-content {
+    display: none;
+    position: absolute;
+    top: 45px; /* Сдвинул вниз */
+    left: 0;
+    background: #2a2a2a; /* Чуть светлее фона */
+    padding: 10px;
+    border-radius: 5px;
+    width: 180px; /* Чуть шире */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Тень */
+    z-index: 1001;
+}
+.menu:hover .menu-content {
+    display: block;
+}
+.menu-content div {
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+.menu-content div:hover {
+    background: #444;
+}
+/* --------------------------------------- */
+
+.profile {
+    cursor: pointer;
+}
+
+/* Основной контейнер для колонок */
+.container {
+    display: flex;
+    width: 100%;
+    height: 100%; /* Занимает всю доступную высоту */
+    margin-top: 0; /* Убрали отступ, т.к. body уже с padding-top */
+}
+
+/* Стили для колонок */
+.sidebar, .right-panel {
+    width: 25%;
+    background: #1a1a1a;
+    padding: 20px;
+    box-sizing: border-box;
+    /* Добавим overflow-y для прокрутки, если контент не поместится */
+    overflow-y: auto;
+    height: 100%; /* Растягиваем на всю высоту контейнера */
+    border-left: 1px solid #333; /* Разделители */
+    border-right: 1px solid #333;
+}
+
+.content {
+    width: 50%;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    overflow-y: auto; /* Прокрутка для центральной части */
+    height: 100%;
+    display: flex; /* Используем flex для контента */
+    flex-direction: column; /* Элементы друг под другом */
+}
+
+#exercise-area {
+    flex-grow: 1; /* Занимает всё доступное пространство по высоте */
+    margin-bottom: 20px; /* Отступ перед кнопками */
+    text-align: left; /* Выравнивание текста заданий по левому краю */
+}
+
+h1, h2 {
+    color: #ffcc00; /* Желтый для заголовков */
+    margin-top: 0; /* Убираем верхний отступ у заголовков */
+    border-bottom: 1px solid #444; /* Подчеркивание */
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+/* Кнопки */
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between; /* Равномерное распределение */
+    margin-top: auto; /* Прижимаем кнопки к низу .content */
+    padding-top: 20px; /* Отступ сверху */
+    border-top: 1px solid #333; /* Линия над кнопками */
+}
+
+.btn {
+    padding: 10px 20px;
+    background: #ffcc00;
+    color: #121212;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s ease, transform 0.1s ease; /* Плавные переходы */
+}
+
+.btn:hover {
+    background-color: #ffe066; /* Светлее при наведении */
+}
+.btn:active {
+    transform: scale(0.98); /* Небольшое уменьшение при нажатии */
+}
+
+/* Стили для чата и фидбека */
+#teacher-chat-content p, #feedback-area p {
+    line-height: 1.6; /* Улучшаем читаемость текста */
+}
