@@ -1,67 +1,58 @@
 <!DOCTYPE html>
-<html lang="ru">  <!-- Изменил язык на русский для примера -->
+<html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Японский Учитель</title>
-  <link rel="stylesheet" href="styles/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Японский Учитель - Игра</title>
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-    <!-- Верхняя панель (фиксированная) -->
     <div class="top-bar">
         <div class="menu">☰ Меню
             <div class="menu-content">
-                <div id="menu-homework">📚 Домашние задания</div>
-                <div id="menu-vocab">📖 Словарь</div>
-                <div id="menu-kanji">🈷️ Канзи-словарь</div>
+                <div>📚 Домашние задания</div>
+                <div>📖 Словарь</div>
+                <div>🈷️ Канзи-словарь</div>
+                <div>📊 Статистика</div>
             </div>
         </div>
-        <div class="progress-info">
-            <span>Уровень: <span id="level">1</span></span>
-            <span>XP: <span id="xp">0</span> / <span id="xp-next-level">100</span></span>
-            <!-- Можно добавить прогресс-бар позже, если захочешь -->
-            <!-- <div class="progress-bar"><div id="progress" class="progress"></div></div> -->
+        <div class="progress-container">
+             <span id="level-display">Ур: 1</span>
+             <div class="progress-bar">
+                 <div class="progress" id="progress"></div>
+             </div>
+             <span id="xp-display">XP: 0 / 100</span>
         </div>
         <div class="profile">👤 Профиль</div>
     </div>
 
-    <!-- Основной контейнер -->
     <div class="container">
-        <!-- Левая панель: Чат с учителем -->
         <div class="sidebar">
-            <h2>💬 Учитель (GPT)</h2>
-            <div id="teacher-chat-content">
-                <p>Привет! Готов начать урок? Здесь будут объяснения.</p>
+            <h3>💡 Учитель говорит:</h3>
+            <div id="gpt-output">
+                Загрузка объяснения от AI...
             </div>
-            <!-- Поле для ввода вопроса учителю (добавим позже) -->
-            <!-- <input type="text" id="user-question" placeholder="Задай вопрос...">
-            <button id="ask-button">Спросить</button> -->
         </div>
-
-        <!-- Центральная панель: Урок и задания -->
         <div class="content">
-            <h1 id="lesson-title">Урок 1: Основы</h1>
-            <div id="exercise-area">
-                <p>Здесь появятся упражнения.</p>
-                <!-- Пример упражнения (добавим динамически) -->
+            <h2 id="lesson-title">Загрузка урока...</h2> <!-- Используем h2, т.к. h1 может быть в другом месте -->
+            <div id="lesson-content">
+                 <p>Загрузка задания от AI...</p>
             </div>
-            <div class="navigation-buttons">
-                <button id="prev-button" class="btn">⬅ Назад</button>
-                <button id="check-button" class="btn">Проверить</button> <!-- Кнопка для проверки ответа -->
-                <button id="next-button" class="btn">Далее ➡</button>
+            <!-- Контейнер для вариантов ответа -->
+             <div id="options-container"></div>
+            <div class="button-group">
+                <button class="btn">⬅ Назад</button>
+                <button class="btn">Далее ➡</button>
             </div>
         </div>
-
-        <!-- Правая панель: Проверка и объяснения -->
         <div class="right-panel">
-            <h2>✅ Результат / Подсказка</h2>
-            <div id="feedback-area">
-                <p>Здесь будет результат проверки твоего ответа или подсказки.</p>
-            </div>
+             <h3>✨ Новые слова:</h3>
+             <ul id="new-words-list">
+                <li>Загрузка слов...</li>
+             </ul>
         </div>
     </div>
 
-    <script src="scripts/data.js"></script> <!-- Сначала данные -->
-    <script src="scripts/app.js"></script>   <!-- Потом основной скрипт -->
+    <script src="scripts/app.js"></script>
 </body>
 </html>

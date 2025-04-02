@@ -1,147 +1,276 @@
-/* Базовые стили и тёмная тема */
+/* Общие стили */
 body {
     margin: 0;
-    padding-top: 60px; /* Добавил отступ сверху из-за фиксированной top-bar */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Более современный шрифт */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #121212;
-    color: #e0e0e0; /* Слегка серый текст для лучшей читаемости */
-    display: flex; /* Используем flex для основного контейнера */
-    height: calc(100vh - 60px); /* Высота за вычетом top-bar */
+    color: #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 /* Верхняя панель */
 .top-bar {
-    box-sizing: border-box; /* Учитывать padding в ширине/высоте */
     width: 100%;
-    height: 60px; /* Сделал чуть выше */
     background: #1f1f1f;
     display: flex;
     justify-content: space-between;
+    padding: 10px 25px;
     align-items: center;
-    padding: 0 30px; /* Убрал вертикальный padding */
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1000; /* Чтобы был поверх всего */
-    border-bottom: 1px solid #333; /* Небольшая граница */
+    z-index: 1000;
+    box-sizing: border-box;
+    border-bottom: 1px solid #333;
 }
 
-.progress-info {
-    display: flex;
-    align-items: center;
-    gap: 15px; /* Расстояние между элементами */
-    font-size: 0.9em;
-}
-
-/* --- Стили меню (остаются как были) --- */
 .menu {
     cursor: pointer;
     position: relative;
-    padding: 10px; /* Добавил немного отступа для удобства нажатия */
+    font-size: 18px;
+    padding: 5px 10px;
 }
+
 .menu-content {
     display: none;
     position: absolute;
-    top: 45px; /* Сдвинул вниз */
+    top: 100%;
     left: 0;
-    background: #2a2a2a; /* Чуть светлее фона */
+    background: #2a2a2a;
     padding: 10px;
-    border-radius: 5px;
-    width: 180px; /* Чуть шире */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Тень */
-    z-index: 1001;
+    border-radius: 0 0 5px 5px;
+    width: 180px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border: 1px solid #333;
+    border-top: none;
 }
+
 .menu:hover .menu-content {
     display: block;
 }
+
 .menu-content div {
-    padding: 10px;
+    padding: 12px 15px;
     cursor: pointer;
+    color: #e0e0e0;
+    transition: background-color 0.2s, color 0.2s;
     border-radius: 3px;
 }
+
 .menu-content div:hover {
-    background: #444;
+    background: #ffcc00;
+    color: #121212;
 }
-/* --------------------------------------- */
+
+/* Контейнер для прогресса */
+.progress-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-grow: 1;
+    justify-content: center;
+    margin: 0 20px;
+}
+
+#level-display, #xp-display {
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.progress-bar {
+    width: 60%;
+    max-width: 400px;
+    height: 12px;
+    background: #333;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid #444;
+}
+
+.progress {
+    width: 0%; /* JS установит значение */
+    height: 100%;
+    background: linear-gradient(90deg, #ffcc00, #ffa500);
+    border-radius: 6px;
+    transition: width 0.5s ease-in-out;
+}
 
 .profile {
+    font-size: 18px;
     cursor: pointer;
+    padding: 5px 10px;
 }
 
-/* Основной контейнер для колонок */
+/* Основной контейнер */
 .container {
     display: flex;
     width: 100%;
-    height: 100%; /* Занимает всю доступную высоту */
-    margin-top: 0; /* Убрали отступ, т.к. body уже с padding-top */
+    flex-grow: 1;
+    margin-top: 55px; /* Отступ от top-bar */
+    box-sizing: border-box;
 }
 
-/* Стили для колонок */
+/* Панели */
 .sidebar, .right-panel {
     width: 25%;
     background: #1a1a1a;
-    padding: 20px;
+    padding: 25px;
     box-sizing: border-box;
-    /* Добавим overflow-y для прокрутки, если контент не поместится */
     overflow-y: auto;
-    height: 100%; /* Растягиваем на всю высоту контейнера */
-    border-left: 1px solid #333; /* Разделители */
+    border-left: 1px solid #333;
     border-right: 1px solid #333;
+    display: flex; /* Для удобного управления содержимым */
+    flex-direction: column; /* Элементы внутри идут друг за другом */
+}
+
+.sidebar {
+    border-right: none;
 }
 
 .content {
     width: 50%;
-    padding: 20px;
+    padding: 30px 40px;
     box-sizing: border-box;
-    text-align: center;
-    overflow-y: auto; /* Прокрутка для центральной части */
-    height: 100%;
-    display: flex; /* Используем flex для контента */
-    flex-direction: column; /* Элементы друг под другом */
+    overflow-y: auto;
+    text-align: center; /* Центрируем заголовок и кнопки */
 }
 
-#exercise-area {
-    flex-grow: 1; /* Занимает всё доступное пространство по высоте */
-    margin-bottom: 20px; /* Отступ перед кнопками */
-    text-align: left; /* Выравнивание текста заданий по левому краю */
-}
-
-h1, h2 {
-    color: #ffcc00; /* Желтый для заголовков */
-    margin-top: 0; /* Убираем верхний отступ у заголовков */
-    border-bottom: 1px solid #444; /* Подчеркивание */
+/* Заголовки панелей */
+.sidebar h3, .right-panel h3 {
+    margin-top: 0;
+    color: #ffcc00;
+    border-bottom: 1px solid #444;
     padding-bottom: 10px;
     margin-bottom: 15px;
+    flex-shrink: 0; /* Заголовок не должен сжиматься */
 }
 
-/* Кнопки */
-.navigation-buttons {
+/* Содержимое панелей */
+#gpt-output, #new-words-list {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #ccc;
+    flex-grow: 1; /* Занимает доступное пространство */
+    overflow-y: auto; /* Добавляем скролл, если нужно */
+}
+
+/* Стили для списка слов */
+#new-words-list {
+    list-style: none; /* Убираем маркеры списка */
+    padding: 0;
+    margin: 0;
+}
+
+#new-words-list li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #333; /* Разделитель между словами */
+}
+#new-words-list li:last-child {
+    border-bottom: none; /* Убираем границу у последнего элемента */
+}
+
+/* Заголовок урока в центре */
+#lesson-title {
+    color: #ffcc00;
+    margin-bottom: 20px;
+}
+
+/* Основной контент/задание в центре */
+#lesson-content {
+    font-size: 17px;
+    line-height: 1.7;
+    margin-bottom: 30px;
+    text-align: left; /* Текст задания обычно лучше слева */
+}
+#lesson-content p { /* Убираем лишние отступы у параграфов внутри */
+    margin-top: 0;
+}
+
+
+/* Контейнер для опций */
+#options-container {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+/* Кнопки вариантов ответа */
+.option-btn {
+    display: block;
+    width: 90%;
+    margin: 12px auto; /* Центрируем */
+    padding: 15px 20px;
+    background-color: #333;
+    color: #e0e0e0;
+    border: 1px solid #555;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: left;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.option-btn:hover {
+    background-color: #444;
+}
+
+.option-btn:active {
+     transform: scale(0.98);
+}
+
+.option-btn.correct {
+    background-color: #28a745;
+    border-color: #1e7e34;
+    color: white;
+}
+
+.option-btn.incorrect {
+    background-color: #dc3545;
+    border-color: #b02a37;
+    color: white;
+}
+
+
+/* Группа кнопок навигации */
+.button-group {
     display: flex;
-    justify-content: space-between; /* Равномерное распределение */
-    margin-top: auto; /* Прижимаем кнопки к низу .content */
-    padding-top: 20px; /* Отступ сверху */
-    border-top: 1px solid #333; /* Линия над кнопками */
+    justify-content: space-between;
+    margin-top: 30px;
+    border-top: 1px solid #333;
+    padding-top: 20px;
 }
 
 .btn {
-    padding: 10px 20px;
+    padding: 12px 25px;
     background: #ffcc00;
     color: #121212;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
+    font-size: 16px;
     font-weight: bold;
-    transition: background-color 0.2s ease, transform 0.1s ease; /* Плавные переходы */
+    transition: background-color 0.3s, transform 0.1s;
 }
 
 .btn:hover {
-    background-color: #ffe066; /* Светлее при наведении */
+    background-color: #e6b800;
 }
 .btn:active {
-    transform: scale(0.98); /* Небольшое уменьшение при нажатии */
+    transform: scale(0.97);
 }
 
-/* Стили для чата и фидбека */
-#teacher-chat-content p, #feedback-area p {
-    line-height: 1.6; /* Улучшаем читаемость текста */
+/* Стили для скроллбаров */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #1f1f1f;
+}
+::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #777;
 }
