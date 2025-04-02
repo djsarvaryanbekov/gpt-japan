@@ -274,3 +274,57 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: #777;
 }
+
+/* Стили для сообщения обратной связи */
+.feedback {
+    margin-top: 15px; /* Отступ сверху */
+    margin-bottom: -10px; /* Компенсируем часть отступа у button-group */
+    font-weight: bold;
+    min-height: 1.2em; /* Резервируем место, чтобы кнопки не прыгали */
+    text-align: center; /* Центрируем текст сообщения */
+}
+
+.feedback.correct {
+    color: #28a745; /* Зеленый цвет для правильного ответа */
+}
+
+.feedback.incorrect {
+    color: #dc3545; /* Красный цвет для неправильного ответа */
+}
+
+/* Индикатор загрузки */
+.loading-overlay {
+    position: absolute; /* Позиционируем относительно .content */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный фон */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10; /* Поверх остального контента */
+    color: #ffcc00;
+    border-radius: 5px; /* Если нужно */
+}
+
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top: 4px solid #ffcc00;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 15px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-overlay p {
+    margin: 0;
+    font-size: 16px;
+}
